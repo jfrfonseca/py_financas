@@ -11,13 +11,14 @@ dados.
 SERÁ NECESSÁRIO CONEXÃO COM A INTERNET PARA A RECUPERAÇÃO DE DADOS DE INDICES, UMA VEZ QUE OS MESMOS SÃO OBTIDOS A
 PARTIR DE UM WEBSERVICE
 
-### Exemplo
 ```python
+import datetime
+import py_financas
 
 # As datas de inicio e fim da busca devem ser objetos DateTime, sem necessidade de especificar o fuso horario.
 # O fuso horario sempre sera assumido como o Horario Python de Sao Paulo (America/Sao_Paulo)
-datetime.datetime.strptime('01/01/2014', '%d/%m/%Y')
-datetime.datetime.strptime('01/02/2014', '%d/%m/%Y')
+data_inicio_busca = datetime.datetime.strptime('01/01/2014', '%d/%m/%Y')
+data_fim_busca = datetime.datetime.strptime('10/01/2014', '%d/%m/%Y')
 
 # Todos os dados de indices sao recuperados no formato Pandas Dataframe
 df = py_financas.indices.recupera_indice(
@@ -54,7 +55,7 @@ print(df)
 # O mesmo DataFrame acima, com uma nomeclatura e ordenacao de colunas diferente:
 df_normal = py_financas.indices.recupera_indice(
     ['IGP-M',
-     'SELIC',,
+     'SELIC',
      'CDI',
      'USD',
      'EUR',
