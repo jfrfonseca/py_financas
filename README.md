@@ -3,6 +3,14 @@ Py Finanças é um pacote python que simplifica obtenção e uso de dados do sis
 
 Permite coletar dados do sistema de séries temporais do Banco Central do Brasil, dos Fundos de Investimento regulados pela Comissão de Valores Mobiliários (CVM) e processar informações de Notas de Corretagem/Negociação em Bolsa de Valores/B3.
 
+## Instalação
+
+Instale o pacote py_financas por meio do [Python Package Index (PIP)](https://pypi.org/project/py-financas/), com o comando abaixo:
+
+```
+pip install py-financas
+```
+
 
 ## Notas de corretagem no formato SINACOR
 
