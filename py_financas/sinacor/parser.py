@@ -224,7 +224,8 @@ def parse_footer(all_pages:List[str], valid_pages:List[bool]) -> Tuple[List[Unio
         ], list(i)))  #type:ignore
         for i in footer_sections
     ]
-    validate_matches(valid_pages, footer)
+    # Do not use the same validation because some pages have continuation pages
+    #validate_matches(valid_pages, footer)
 
     return footer, footer_continuation
 
