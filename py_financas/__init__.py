@@ -23,6 +23,11 @@
 """
 
 
+__version__ = '1.0.1'
+version = __version__
+VERSION = __version__
+
+
 # O sistema da Comissao de Valores Mobiliarios e tambem a unica fonte de informacoes sobre fundos
 from py_financas import cvm
 from py_financas import cvm as fundos
@@ -32,3 +37,8 @@ from py_financas import cvm as fundos_mutuos
 from py_financas import bcb_sgs
 from py_financas import bcb_sgs as indices
 from py_financas import bcb_sgs as indexadores  # Indices tambem sao chamados "indexadores"
+
+# O SINACOR contém os modelos de dados utilizados em negociacoes
+from py_financas import sinacor
+from py_financas.sinacor.types import NotaCorretagem, Posicao, \
+    MomentoPosicao, Operacao, Corretora, Totais, Impostos, Custos

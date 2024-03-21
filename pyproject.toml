@@ -1,0 +1,41 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "py_financas"
+dynamic = ["version"]
+authors = [
+  { name="José Fonseca", email="jfra.fonseca@gmail.com" },
+]
+description = "Py Finanças é um pacote python que simplifica obtenção e uso de dados do sistema financeiro brasileiro."
+readme = "README.md"
+requires-python = ">=3.6.0"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: Other/Proprietary License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "pydantic",
+  "numpy",
+  "pandas",
+  "requests",
+  "pdfplumber",
+  "openpyxl",
+  "xmltodict",
+  "suds",
+  "unidecode"
+]
+
+[tool.hatch.version]
+path = "py_financas/__init__.py"
+
+[project.urls]
+Homepage = "https://github.com/jfrfonseca/py_financas"
+Documentation = "https://github.com/jfrfonseca/py_financas/README.md"
+Issues = "https://github.com/jfrfonseca/py_financas/issues"
+
+[tool.hatch.build.targets.sdist]
+include = ["py_financas/*"]
+exclude = []

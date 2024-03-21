@@ -1,10 +1,84 @@
 # py_financas
-Py Finanças é um pacote python que abstrai a obtenção de dados a partir do sistema financeiro brasileiro,
-incluindo cálculo de vários impostos
+Py Finanças é um pacote python que simplifica obtenção e uso de dados do sistema financeiro brasileiro.
+
+Permite coletar dados do sistema de séries temporais do Banco Central do Brasil, dos Fundos de Investimento regulados pela Comissão de Valores Mobiliários (CVM) e processar informações de Notas de Corretagem/Negociação em Bolsa de Valores/B3.
+
+
+## Notas de corretagem no formato SINACOR
+
+O [Sistema Integrado de Administração de Corretoras (SINACOR)](https://www.b3.com.br/pt_br/solucoes/plataformas/middle-e-backoffice/sinacor/sobre-o-sinacor/) é uma plataforma presente em 95% das corretoras do Brasil, que simplifica e padroniza a comunicação entre corretoras e investidores.
+
+O pacote py_financas permite a leitura de notas de corretagem em arquivos PDF, contanto que estejam no formato SINACOR.
+Para obter seu histórico de notas de corretagem no formato SINACOR, entre em contato com sua corretora e peça, explicitamente, para que enviem seu histórico de notas de corretagem no formato SINACOR, em um ou mais arquivos PDF.
+
+
+### Parsing de Notas de Corretagem
+
+Parsing é o processo de ler dados em formatos de difícil acesso, e obter resultados que podem ser tratados mais facilmente.
+Os arquivos PDF com notas de negociação no formato SINACOR são lidos e processados pelo pacote py_financas, e os resultados são retornados em uma lista de objetos NotaCorretagem.
+
+```python
+from py_financas.sinacor import parse_notas_corretagem
+
+lista_arquivos_pdf = ['Insira aqui seus arquivos PDF de notas de corretagem no formato SINACOR.pdf']
+
+objetos_nota_corretagem = parse_notas_corretagem(lista_arquivos_pdf)
+```
+
+
+Um Objeto NotaCorretagem contém informações sobre uma nota de corretagem, incluindo seus impostos, custos, corretora e operações realizadas.
+
+
+```python
+from py_financas import NotaCorretagem
+```
+
+
+### Parsing automático de Posições
+
+Posições são conjuntos de ações do mesmo título, caracterizadas pela quantidade e pelo valor médio de compra das ações ao longo do tempo.
+O objeto Posicao pode ser gerado a partir de objetos NotaCorretagem
+
+
+```python
+from py_financas.sinacor import parse_notas_corretagem
+from py_financas.sinacor import parse_posicoes_de_notas_de_corretagem
+
+objetos_nota_corretagem = parse_notas_corretagem(lista_arquivos_pdf)
+
+posicoes = parse_posicoes_de_notas_de_corretagem(objetos_nota_corretagem)
+
+for pos in posicoes:
+    print(pos.sumario())
+```
+
+
+### Parsing Híbrido de Posições
+
+Por vezes, posições podem requerer informações que não estão presentes nas notas de corretagem, como por exemplo Ofertas Públicas, Subscrições e Desdobramentos (Stock Splits).
+Por isso, pode ser necessário inserir operações manuais para completar as informações de uma posição.
+
+O pacote py_financas pode combinar informações de notas de corretagem com informações manuais para gerar um relatório completo de posições.
+
+*As informações manuais devem ser inseridas por meio de arquivos Excel, no formato exato do* [modelo anexo](https://www.google.com)
+
+```python
+from py_financas.sinacor import parse_posicoes
+
+lista_arquivos_pdf = ['Insira aqui seus arquivos PDF de notas de corretagem no formato SINACOR.pdf']
+lista_arquivos_excel = ['Insira aqui seus arquivos EXCEL de operações manuais no formato do template fornecido.xlsx']
+
+posicoes = parse_posicoes(lista_arquivos_pdf, lista_arquivos_excel)
+
+for pos in posicoes:
+    print(pos.sumario())
+```
+
+
 
 ## Indices, Indicadores e Indexadores
 Indices, indicadores e indexadores são considerados neste pacote como sinônimos, e todos os dados são obtidos diretamente
-a partir dos webservices do [Sistema Gerenciador de Séries Temporais do Banco Central do Brasil[(https://www3.bcb.gov.br),
+a partir dos webservices do [Sistema Gerenciador de Séries Temporais do Banco Central do Brasil](https://www3.bcb.gov.br),
 um sistema público mantido pelo orgão do governo brasileiro, no qual não é necessário criar usuário e senha para recuperar
 dados.
 
