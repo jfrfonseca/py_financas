@@ -68,7 +68,7 @@ Por isso, pode ser necessário inserir operações manuais para completar as inf
 
 O pacote py_financas pode combinar informações de notas de corretagem com informações manuais para gerar um relatório completo de posições.
 
-*As informações manuais devem ser inseridas por meio de arquivos Excel, no formato exato do* [modelo anexo](https://www.google.com)
+*As informações manuais devem ser inseridas por meio de arquivos Excel, no formato exato do* [modelo anexo](https://github.com/jfrfonseca/py_financas/blob/ef9575a686777960f61e448d43178d42f780553f/template_operacoes_manuais.xlsx)
 
 ```python
 from py_financas.sinacor import parse_posicoes
