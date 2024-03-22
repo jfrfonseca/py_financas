@@ -155,4 +155,4 @@ def parse_posicoes(arquivos_pdf_notas_corretagem:List[str],
     todas_as_operacoes = {k:sorted(v, key=lambda op: op._nota_data_pregao)
                           for k,v in todas_as_operacoes.items()}
 
-    return parse_posicoes_de_operacoes(operacoes_automaticas)
+    return parse_posicoes_de_operacoes(todas_as_operacoes)
